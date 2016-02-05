@@ -25,6 +25,8 @@ def getTrackTags(artistName, trackName, autocorrect=True, dump=False):
     topTagNames = map(lambda x: x['name'], topTags)
     
     if dump:
+        print "url: " + url
+        print ""
         print "Artist: " + artistName
         print "Track: " + trackName
         for tag in topTagNames:
