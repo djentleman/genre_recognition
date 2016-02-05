@@ -2,7 +2,6 @@
 
 import requests
 
-
 def httpGet(req):
     res = requests.get(req)
     return res
