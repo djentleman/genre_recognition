@@ -5,16 +5,17 @@ import utils.wavconvert as wavconvert
 
 class Track:
     def __init__(self, path=""):
-        if path == "":
-            # metadata attributes
-            self.name = ""
-            self.artist = ""
-            self.album = ""
-            self.path = ""
-            # lastfm tags
-            self.tags = []
-        else:
+        self.metadata = False
+        # metadata attributes
+        self.name = ""
+        self.artist = ""
+        self.album = ""
+        self.path = ""
+        # lastfm tags
+        self.tags = []
+        if path != "":
             self.getMetadata(path)
+        if self.metadata:
             self.getGenreTags()
             
     def getMetadata(self, path):
@@ -29,6 +30,7 @@ class Track:
         self.name = tag.title
         self.artist = tag.artist
         self.album = tag.album
+        self.metadata = True
 
     def getGenreTags(self):
         self.tags = lastfm.getTrackTags(self.artist, self.name)
@@ -50,6 +52,13 @@ class Track:
         for tag in self.tags:
             print "     " + tag
         print "---------------------------"
+
+def isValidPath(path):
+    ext = path.split(".")[-1]
+    return (ext == "wav" or
+            ext == "mp3" or
+            ext == "ogg" or
+            ext == "flv")
         
 
 if __name__ == "__main__":
