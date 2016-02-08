@@ -29,11 +29,11 @@ def convert(path):
     fileFormat = path.split(".")[-1]
     if fileFormat == "wav":
         moveWav(path, "tmp.wav")
-    elif fileFromat == "mp3":
+    elif fileFormat == "mp3":
         convertFromMp3(path, "tmp.wav")
-    elif fileFromat == "ogg":
+    elif fileFormat == "ogg":
         convertFromOgg(path, "tmp.wav")
-    elif fileFromat == "flv":
+    elif fileFormat == "flv":
         convertFromFlv(path, "tmp.wav")
         
 
@@ -41,6 +41,10 @@ def handleFile(path):
     if canConvert(path):
         convert(path)
     # now we can process tmp.wav
-    
+
+if __name__ == "__main__":
+    path = "C:\Users\Todd\Music\song.mp3"
+    handleFile(path)
+
         
     
