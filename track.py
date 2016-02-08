@@ -2,7 +2,7 @@
 import eyed3 # used for getting mp3 metadata
 import lastfm
 
-class MP3:
+class Track:
     def __init__(self, path=""):
         if path == "":
             # metadata attributes
@@ -38,5 +38,5 @@ class MP3:
 
 if __name__ == "__main__":
     path = "C:\Users\Todd\Music\song.mp3"
-    mp3 = MP3(path)
+    mp3 = Track(path)
     mp3.dump()
