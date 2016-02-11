@@ -1,12 +1,13 @@
 # directory scanner
 
-import track
+import dataset
+import utils.track as track
 import os
 from os.path import isfile, join
 
 
 def processDirectory(path):
-    tracks = []
+    tracks = dataset.Dataset()
     print path
     #print tracks
     try:
@@ -18,14 +19,15 @@ def processDirectory(path):
     dirs = filter(lambda f: not isfile(join(path, f)), ls)
     for fpath in files:
         if track.isValidPath(path + "/" + fpath):
-            tracks.append(track.Track(path + "/" + fpath))
+            tracks.addPath(path + "/" + fpath)
     for dpath in dirs:
-        tracks += processDirectory(path + "/" + dpath)
+        tracks.merge(processDirectory(path + "/" + dpath))
     return tracks
         
     
 
 if __name__ == "__main__":
     tracks = processDirectory(r"C:/Users/Todd/Documents")
-    for sound in tracks: sound.dump()
+    tracks.dump()
+    
     

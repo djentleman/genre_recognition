@@ -1,7 +1,7 @@
 # mp3 parsing library
 import eyed3 # used for getting mp3 metadata
-import utils.lastfm as lastfm
-import utils.wavconvert as wavconvert
+import lastfm
+import wavconvert
 
 class Track:
     def __init__(self, path=""):
