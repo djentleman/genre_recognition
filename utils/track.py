@@ -36,7 +36,7 @@ class Track:
         self.metadata = True
 
     def getGenreTags(self):
-        self.tags = lastfm.getTrackTags(self.artist, self.name)
+        self.tags = lastfm.getTopTags(self.artist, self.name)
 
     def analyseTrack(self, plotWaveform=False):
         # first convert to wav
