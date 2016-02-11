@@ -23,4 +23,9 @@ class Dataset:
         for track in self.data:
             track.dump()
 
+    def plot(self):
+        for track in self.data:
+            track.plotWaveform()
+
+
     

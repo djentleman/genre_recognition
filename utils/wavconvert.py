@@ -17,7 +17,7 @@ def convertFromFlv(inpath, outpath):
     sound.export(outpath, format="wav")
 
 def moveWav(infile, outfile):
-    shutil(infile, outfile)
+    shutil.move(infile, outfile)
 
 def canConvert(path):
     fileFormat = path.split(".")[-1]

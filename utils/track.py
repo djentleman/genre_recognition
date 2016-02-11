@@ -2,6 +2,7 @@
 import eyed3 # used for getting mp3 metadata
 import lastfm
 import wavconvert
+import waveform
 
 class Track:
     def __init__(self, path=""):
@@ -11,12 +12,14 @@ class Track:
         self.artist = ""
         self.album = ""
         self.path = ""
+        self.waveform = None
         # lastfm tags
         self.tags = []
         if path != "":
             self.getMetadata(path)
         if self.metadata:
             self.getGenreTags()
+        self.analyseTrack()
             
     def getMetadata(self, path):
         self.path = path
@@ -35,14 +38,19 @@ class Track:
     def getGenreTags(self):
         self.tags = lastfm.getTrackTags(self.artist, self.name)
 
-    def analyseTrack(self):
+    def analyseTrack(self, plotWaveform=False):
         # first convert to wav
         if (wavconvert.convertFile(self.path)):
-            # TODO: extract features from the wav file
+            self.waveform = waveform.Waveform("tmp.wav")
+            if plotWaveform:
+                self.plotWaveform()
+            self.waveform.close() # need to close the file before deleting
             wavconvert.destroyTmp()
         else:
             print "Err: File could not be converted into wav"
-        
+            
+    def plotWaveform(self):
+        self.waveform.plot()
 
     def dump(self):
         print "Artist: " + self.artist
@@ -66,3 +74,4 @@ if __name__ == "__main__":
     mp3 = Track(path)
     mp3.dump()
     mp3.analyseTrack()
+    mp3.plotWaveform()

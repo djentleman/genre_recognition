@@ -29,5 +29,6 @@ def processDirectory(path):
 if __name__ == "__main__":
     tracks = processDirectory(r"C:/Users/Todd/Documents")
     tracks.dump()
+    tracks.plot()
     
     
