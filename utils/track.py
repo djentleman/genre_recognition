@@ -44,7 +44,6 @@ class Track:
             self.waveform = waveform.Waveform("tmp.wav")
             if plotWaveform:
                 self.plotWaveform()
-            self.waveform.close() # need to close the file before deleting
             wavconvert.destroyTmp()
         else:
             print "Err: File could not be converted into wav"
