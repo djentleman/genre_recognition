@@ -81,10 +81,6 @@ if __name__ == "__main__":
     song = Track(path3)
     song.dump()
     song.plotFFT()
-    path3 = 'C:\Users\Todd\Documents\Blank Banshee - Blank Banshee 0/Blank Banshee - Blank Banshee 0 - 09 Dreamcast.mp3'
-    song = Track(path3)
-    song.dump()
-    song.plotFFT()
     
     
     

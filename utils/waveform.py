@@ -32,11 +32,17 @@ class Waveform():
         for chunk in self.chunks:
             cFeatures.append(chunk.get_array_of_samples())
         # loop over cFeatures, run FFT to make data more useful
-        # sample spacing
-        T = 1.0 / 800.0
+        # first get the frequency axis
+        freq = map(lambda x: x * self.framerate,
+                   numpy.fft.fftfreq(len(cFeatures[0])))
+        # we need crop fft between 20 and 20000hz
+        # we need to find the relevant indexes
+        cropIndexLower = getIndex(freq, 20)
+        cropIndexUpper = getIndex(freq, 10000)
         for sample in cFeatures:
-            fft = scipy.fftpack.fft(sample).real
-            ffts.append(abs(fft[:len(fft)/2]))
+            fft = numpy.fft.fft(sample).real
+            processedFFT = abs(fft)[cropIndexLower:cropIndexUpper]
+            ffts.append(processedFFT)
         return ffts
 
     def getAverageFFT(self, plot=False):
@@ -55,9 +61,17 @@ class Waveform():
 
 def plot(data):
     plt.cla()
+    plt.clf()
     plt.plot(data)
     plt.show()
 
+def getIndex(array, toFind):
+    # only works for sorted arrays, eg ftt freq axis
+    for val in array:
+        if toFind <= val:
+            return array.index(val)
+
 if __name__ == "__main__":
     w = Waveform('C:/Users/Todd/tmp.wav')
+    w.getAverageFFT()
     plot(w.averageFFT)
