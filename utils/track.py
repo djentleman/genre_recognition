@@ -69,6 +69,8 @@ def isValidPath(path):
         
 
 if __name__ == "__main__":
+    test = Track('C:/Users/Todd/500.mp3')
+    test.plotFFT()
     path = "C:\Users\Todd\Music\song.mp3"
     song = Track(path)
     song.dump()
@@ -81,6 +83,4 @@ if __name__ == "__main__":
     song = Track(path3)
     song.dump()
     song.plotFFT()
-    
-    
     

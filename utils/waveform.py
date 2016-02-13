@@ -1,7 +1,5 @@
 # waveform utils
 from pydub import AudioSegment
-import sys
-import scipy.fftpack
 import matplotlib.pyplot as plt
 import numpy
 
