@@ -8,3 +8,7 @@ attempt at genre classification on mp3 files using last FM
 >>eyed3 - getting mp3 metadata
 
 >>pydub - converting from other formats into useful wav
+
+>>numpy - for FFT functionality
+
+>>matplotlib - for debugging signal processing
