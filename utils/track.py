@@ -48,8 +48,8 @@ class Track:
         else:
             print "Err: File could not be converted into wav"
             
-    def plotWaveform(self):
-        self.waveform.plot()
+    def plotFFT(self):
+        self.waveform.plotAverageFFT()
 
     def dump(self):
         print "Artist: " + self.artist
@@ -70,7 +70,21 @@ def isValidPath(path):
 
 if __name__ == "__main__":
     path = "C:\Users\Todd\Music\song.mp3"
-    mp3 = Track(path)
-    mp3.dump()
-    mp3.analyseTrack()
-    mp3.plotWaveform()
+    song = Track(path)
+    song.dump()
+    song.plotFFT()
+    path2 = 'C:\Users\Todd\Documents\Metallica/01 Enter Sandman.mp3'
+    song = Track(path2)
+    song.dump()
+    song.plotFFT()
+    path3 = 'C:\Users\Todd\Documents\Iglooghost\Chinese Nu Year/2 Mametchi Usohachi.mp3'
+    song = Track(path3)
+    song.dump()
+    song.plotFFT()
+    path3 = 'C:\Users\Todd\Documents\Blank Banshee - Blank Banshee 0/Blank Banshee - Blank Banshee 0 - 09 Dreamcast.mp3'
+    song = Track(path3)
+    song.dump()
+    song.plotFFT()
+    
+    
+    

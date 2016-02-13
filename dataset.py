@@ -23,9 +23,9 @@ class Dataset:
         for track in self.data:
             track.dump()
 
-    def plot(self):
+    def plotFFTs(self):
         for track in self.data:
-            track.plotWaveform()
+            track.plotFFT()
 
 
     

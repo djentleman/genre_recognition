@@ -3,6 +3,7 @@ from pydub import AudioSegment
 import sys
 import scipy.fftpack
 import matplotlib.pyplot as plt
+import numpy
 
 
 class Waveform():
@@ -35,8 +36,16 @@ class Waveform():
         T = 1.0 / 800.0
         for sample in cFeatures:
             fft = scipy.fftpack.fft(sample).real
-            ffts.append(fft[:len(fft)/2])
+            ffts.append(abs(fft[:len(fft)/2]))
         return ffts
+
+    def getAverageFFT(self, plot=False):
+        ffts = numpy.asarray(self.chunkFeatures)
+        self.averageFFT = ffts.mean(axis=0)
+
+    def plotAverageFFT(self):
+        self.getAverageFFT()
+        plot(self.averageFFT)
         
     def getFeatures(self):
         self.songFeatures = self.getSongFeatures()
@@ -44,6 +53,11 @@ class Waveform():
         self.chunkFeatures = self.getChunkFeatures()
         # merge sets together
 
+def plot(data):
+    plt.cla()
+    plt.plot(data)
+    plt.show()
+
 if __name__ == "__main__":
     w = Waveform('C:/Users/Todd/tmp.wav')
-    print w.chunkFeatures[0][:100]
+    plot(w.averageFFT)
