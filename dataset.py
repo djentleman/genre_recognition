@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import utils.track as track
+import io
 
 class Dataset:
     def __init__(self, csvPath):
@@ -6,8 +8,10 @@ class Dataset:
         self.path = csvPath
 
     def addTrack(self, tr):
-        open(self.path, 'a').write(",".join([str(t) for t in tr.getFeatureSet()]) + '\n')
-
+        strs = [unicodeConvert(t) for t in tr.getFeatureSet()]
+        writeStr = ','.join(strs) + '\n'
+        io.open(self.path, 'a').write(writeStr)
+    
     def addPath(self, path):
         tr = track.Track(path)
         self.addTrack(tr)
@@ -17,5 +21,12 @@ class Dataset:
         #todo
 
 
-
-    
+def unicodeConvert(s):
+    # not proud of this but it works :^)
+    try:
+        return unicode(s, 'utf-8')
+    except:
+        try:
+            return unicode(str(s), 'utf-8')
+        except:
+            return s

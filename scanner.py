@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # directory scanner
 
 import dataset
@@ -24,7 +25,6 @@ def processDirectory(path, csvPath):
         processDirectory(path + "/" + dpath, csvPath)
     return tracks
         
-    
 
 if __name__ == "__main__":
     tracks = processDirectory(r"C:/Users/Todd/Documents", "csv.csv")

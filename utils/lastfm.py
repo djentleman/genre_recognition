@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # wrapper aorund api library to use last fm api
 import api
 
@@ -6,7 +7,7 @@ def constructUrl(apiName, params):
     url = 'http://ws.audioscrobbler.com/2.0/' + '?method=' + apiName
     for key, value in params.iteritems():
         try:
-            url += '&' + key + '=' + str(value)
+            url += '&' + key.encode('utf8') + '=' + str(value).encode('utf8')
         except:
             return "" # invalid string
     url += '&api_key=' + api_key

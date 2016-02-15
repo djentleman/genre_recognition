@@ -62,7 +62,7 @@ class Track:
         print "---------------------------"
 
     def getFeatureSet(self):
-        return [self.waveform.length, self.waveform.BPM] + \
+        return [self.artist, self.album, self.name, self.waveform.length, self.waveform.BPM] + \
                self.waveform.averageFFT.tolist() + self.tags
 
 def isValidPath(path):
