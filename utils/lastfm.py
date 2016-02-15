@@ -5,7 +5,10 @@ def constructUrl(apiName, params):
     api_key = '8649be7c48a1034ae29f0e62b0bb3389'
     url = 'http://ws.audioscrobbler.com/2.0/' + '?method=' + apiName
     for key, value in params.iteritems():
-        url += '&' + key + '=' + str(value)
+        try:
+            url += '&' + key + '=' + str(value)
+        except:
+            return "" # invalid string
     url += '&api_key=' + api_key
     return url
 
@@ -17,6 +20,8 @@ def getTrackTags(artistName, trackName, autocorrect=True, dump=False):
                 'format': 'json'
              }
     url = constructUrl('track.getTopTags', params)
+    if url == "":
+        return [] # there was a problem
     json = api.getJSON(url)
     # got the JSON, now parse out top tags
     numTopTags = 5

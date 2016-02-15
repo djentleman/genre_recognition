@@ -6,8 +6,8 @@ import os
 from os.path import isfile, join
 
 
-def processDirectory(path):
-    tracks = dataset.Dataset()
+def processDirectory(path, csvPath):
+    tracks = dataset.Dataset(csvPath)
     print path
     #print tracks
     try:
@@ -21,14 +21,12 @@ def processDirectory(path):
         if track.isValidPath(path + "/" + fpath):
             tracks.addPath(path + "/" + fpath)
     for dpath in dirs:
-        tracks.merge(processDirectory(path + "/" + dpath))
+        processDirectory(path + "/" + dpath, csvPath)
     return tracks
         
     
 
 if __name__ == "__main__":
-    tracks = processDirectory(r"C:/Users/Todd/Documents")
-    tracks.dump()
-    tracks.plotFFTs()
+    tracks = processDirectory(r"C:/Users/Todd/Documents", "csv.csv")
     
     

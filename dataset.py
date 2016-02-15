@@ -1,31 +1,21 @@
 import utils.track as track
 
 class Dataset:
-    def __init__(self):
+    def __init__(self, csvPath):
         self.data = []
+        self.path = csvPath
 
-    def addTrack(self, track):
-        self.data.append(track)
+    def addTrack(self, tr):
+        open(self.path, 'a').write(",".join([str(t) for t in tr.getFeatureSet()]) + '\n')
 
     def addPath(self, path):
-        self.data.append(track.Track(path))
+        tr = track.Track(path)
+        self.addTrack(tr)
 
-    def merge(self, extDataset):
-        self.data += extDataset.data
+    def readCsv(self):
+        pass
+        #todo
 
-    def exportAsCSV(self):
-        pass # todo
-
-    def exportAsArff(self):
-        pass # todo
-
-    def dump(self):
-        for track in self.data:
-            track.dump()
-
-    def plotFFTs(self):
-        for track in self.data:
-            track.plotFFT()
 
 
     

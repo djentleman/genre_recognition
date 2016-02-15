@@ -3,6 +3,7 @@ import eyed3 # used for getting mp3 metadata
 import lastfm
 import wavconvert
 import waveform
+import numpy
 
 class Track:
     def __init__(self, path=""):
@@ -60,6 +61,10 @@ class Track:
             print "     " + tag
         print "---------------------------"
 
+    def getFeatureSet(self):
+        return [self.waveform.length, self.waveform.BPM] + \
+               self.waveform.averageFFT.tolist() + self.tags
+
 def isValidPath(path):
     ext = path.split(".")[-1]
     return (ext == "wav" or
@@ -69,6 +74,12 @@ def isValidPath(path):
         
 
 if __name__ == "__main__":
+    test = Track('C:/Users/Todd/classical2.mp3')
+    test.plotFFT()
+    test = Track('C:/Users/Todd/classical.mp3')
+    test.plotFFT()
+    test = Track('C:/Users/Todd/8bit.mp3')
+    test.plotFFT()
     test = Track('C:/Users/Todd/500.mp3')
     test.plotFFT()
     path = "C:\Users\Todd\Music\song.mp3"
