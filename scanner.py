@@ -6,6 +6,8 @@ import utils.track as track
 import os
 from os.path import isfile, join
 
+def clear(path):
+    open(path, 'w').write('')
 
 def processDirectory(path, csvPath):
     tracks = dataset.Dataset(csvPath)
@@ -23,10 +25,9 @@ def processDirectory(path, csvPath):
             tracks.addPath(path + "/" + fpath)
     for dpath in dirs:
         processDirectory(path + "/" + dpath, csvPath)
-    return tracks
         
 
 if __name__ == "__main__":
-    tracks = processDirectory(r"C:/Users/Todd/Documents", "csv.csv")
+    processDirectory(r"C:/Users/Todd/Documents", "csv.csv")
     
     
