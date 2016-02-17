@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import utils.track as track
+import track
 import io
 
 class Dataset:
@@ -24,9 +24,6 @@ class Dataset:
 def unicodeConvert(s):
     # not proud of this but it works :^)
     try:
-        return unicode(s, 'utf-8')
+        return unicode(str(s), 'utf-8')
     except:
-        try:
-            return unicode(str(s), 'utf-8')
-        except:
-            return s
+        return s
