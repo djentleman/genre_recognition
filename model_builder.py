@@ -7,7 +7,7 @@ import csv_interpreter as interpreter
 
 
 def main():
-    scanPath = r"C:/Users/Todd/Documents"
+    scanPath = r"/root"
     csvPath = "csv.csv"
     scanner.clear(csvPath)
     # compile csv file
