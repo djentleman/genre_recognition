@@ -34,7 +34,8 @@ class Track:
         self.name = tag.title
         self.artist = tag.artist
         self.album = tag.album
-        self.metadata = True
+        if (str(self.name) != 'None' or str(self.artist) != 'None'):
+            self.metadata = True
 
     def getGenreTags(self):
         self.tags = lastfm.getTopTags(self.artist, self.name)
@@ -94,4 +95,3 @@ if __name__ == "__main__":
     song = Track(path3)
     song.dump()
     song.plotFFT()
-    

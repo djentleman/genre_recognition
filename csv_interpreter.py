@@ -8,7 +8,7 @@ def getWhitelist():
     return   ['instrumental hip-hop', 'thrash metal',
              'chillwave', 'ambient', 'hard rock',
              'seapunk',
-             'electronica', 'electronic', 'nostalgia', 'Ballad', 'post-trap',
+             'electronica', 'electronic', 'Ballad', 'post-trap',
              'chillout', 'techno', 'vaporwave',
              'trip-hop', 'downtempo', 'psychedelic',
              'breakcore', 'metal', 'best track ever',
@@ -46,7 +46,7 @@ def handleCsv(path = "csv.csv"):
             if pos != -1:
                 outputVector[i][pos] = 1
     #now we have out vectors, we can hand things over to theano
-    return metadataVector, inputVector, outputVector
+    return metadataVector, inputVector, outputVector, filteredGenres
             
     
     
