@@ -5,19 +5,30 @@ import csv_interpreter as interpreter
 import utils.classification as classification
 
 
-
-
-def main():
-    scanPath = r"/root"
-    csvPath = "csv.csv"
+def constructNewCsv(scanPath, csvPath):
+    # clean out oldCsv
     scanner.clear(csvPath)
     # compile csv file
     scanner.processDirectory(scanPath, csvPath)
-    # build vectors for theano
+
+def addToCsv(scanPath, csvPath):
+    # compile csv file
+    scanner.processDirectory(scanPath, csvPath)
+
+def buildModel(csvPath, modelPath):
     metadataVector, inputVector, outputVector, genreVector = interpreter.handleCsv(csvPath)
     # train deep neural net based on input and output vectors
     cTools = classification.ClassificationTools(inputVector, outputVector)
+    cTools.trainMultilayerPerceptron() 
     # save the model
+    cTools.serializeModel(modelPath)
+
+def fullPipeline(scanPath, csvPath, modelPath):
+    constructNewCsv(scanPath, csvPath) 
+    buildModel(csvPath, modelPath)
 
 if __name__ == "__main__":
-    main()
+    scanPath = r"/root"
+    csvPath = "csv.csv"
+    modelPath = "model.dat"
+    fullPipeline(scanPath, csvPath, modelPath)

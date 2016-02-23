@@ -54,5 +54,5 @@ if __name__ == "__main__":
 	# looking good :^)
 	print y
 	# save the model
-	x.serializeModel('tmp.json')
+	x.serializeModel('tmp.dat')
 
