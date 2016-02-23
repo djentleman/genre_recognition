@@ -5,6 +5,15 @@ import csv_interpreter as interpreter
 import utils.classification as classification
 
 
+
+def main(*args):
+    # I fucking love Python
+    try:
+        fullPipeline(args[0], args[1], args[2])
+    except():
+        test()
+
+
 def constructNewCsv(scanPath, csvPath):
     # clean out oldCsv
     scanner.clear(csvPath)
@@ -27,8 +36,12 @@ def fullPipeline(scanPath, csvPath, modelPath):
     constructNewCsv(scanPath, csvPath) 
     buildModel(csvPath, modelPath)
 
-if __name__ == "__main__":
+def test():
     scanPath = r"/root"
     csvPath = "csv.csv"
     modelPath = "model.dat"
     fullPipeline(scanPath, csvPath, modelPath)
+
+if __name__ == "__main__":
+    #main(*args)
+    test()
