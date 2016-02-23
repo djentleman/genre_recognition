@@ -5,11 +5,15 @@ import csv_interpreter as interpreter
 import utils.classification as classification
 
 
+def main(*args):
+    # I fucking love Python
+    try:
+        buildModel(args[0], args[1])
+    except():
+        buildModel()
 
 
-def main():
-    scanPath = r"/root"
-    csvPath = "csv.csv"
+def buildModel(scanPath=r"/root", csvPath="csv.csv"):
     scanner.clear(csvPath)
     # compile csv file
     scanner.processDirectory(scanPath, csvPath)
@@ -18,6 +22,7 @@ def main():
     # train deep neural net based on input and output vectors
     cTools = classification.ClassificationTools(inputVector, outputVector)
     # save the model
+
 
 if __name__ == "__main__":
     main()
