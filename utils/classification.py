@@ -20,7 +20,7 @@ class ClassificationTools():
 		self.outputVector = numpy.asarray(outputVector)
 
 
-	def trainMultilayerPerceptron(self, hlunits=100, learningRate=0.01, iters=1000):
+	def trainMultilayerPerceptron(self, hlunits=10000, learningRate=0.01, iters=1000):
 		# trains a simple MLP with a single hidden layer
 		self.model = Regressor(
 			layers=[

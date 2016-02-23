@@ -22,6 +22,7 @@ def processDirectory(path, csvPath):
     dirs = filter(lambda f: not isfile(join(path, f)), ls)
     for fpath in files:
         if track.isValidPath(path + "/" + fpath):
+            print 'scanning: ' + path + "/" + fpath
             tracks.addPath(path + "/" + fpath)
     for dpath in dirs:
         processDirectory(path + "/" + dpath, csvPath)

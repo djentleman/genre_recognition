@@ -26,7 +26,11 @@ def getTrackTags(artistName, trackName, autocorrect=True, dump=False):
     json = api.getJSON(url)
     # got the JSON, now parse out top tags
     numTopTags = 5
-    tags = json['toptags']['tag']
+    try:
+        tags = json['toptags']['tag']
+    except:
+        # no tags
+        return []
     topTags = tags[0:min([numTopTags, len(tags)])]
     topTagNames = map(lambda x: x['name'], topTags)
     
@@ -51,6 +55,11 @@ def getArtistTags(artistName, autocorrect=True, dump=False):
     json = api.getJSON(url)
     # got the JSON, now parse out top tags
     numTopTags = 5
+    try:
+        tags = json['toptags']['tag']
+    except:
+        # no tags
+        return []
     tags = json['toptags']['tag']
     topTags = tags[0:min([numTopTags, len(tags)])]
     topTagNames = map(lambda x: x['name'], topTags)

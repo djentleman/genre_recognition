@@ -28,7 +28,7 @@ def buildModel(csvPath, modelPath):
     metadataVector, inputVector, outputVector, genreVector = interpreter.handleCsv(csvPath)
     # train deep neural net based on input and output vectors
     cTools = classification.ClassificationTools(inputVector, outputVector)
-    cTools.trainMultilayerPerceptron() 
+    cTools.trainMultilayerPerceptron(learningRate=0.000001) 
     # save the model
     cTools.serializeModel(modelPath)
 
@@ -37,10 +37,12 @@ def fullPipeline(scanPath, csvPath, modelPath):
     buildModel(csvPath, modelPath)
 
 def test():
-    scanPath = r"/root"
+    scanPath = r"/root/music"
     csvPath = "csv.csv"
+    #csvPath = "test.csv"
     modelPath = "model.dat"
     fullPipeline(scanPath, csvPath, modelPath)
+    buildModel(csvPath, modelPath)
 
 if __name__ == "__main__":
     #main(*args)
