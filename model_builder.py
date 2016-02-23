@@ -16,6 +16,7 @@ def main():
     # build vectors for theano
     metadataVector, inputVector, outputVector, genreVector = interpreter.handleCsv(csvPath)
     # train deep neural net based on input and output vectors
+    cTools = classification.ClassificationTools(inputVector, outputVector)
     # save the model
 
 if __name__ == "__main__":
